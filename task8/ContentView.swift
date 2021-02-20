@@ -33,11 +33,7 @@ struct ContentView: View {
 
 struct SliderView: View {
 
-    private static let answerRange = 0...1.0
-
-    private var sliderRange: ClosedRange<Float> {
-        Float(Self.answerRange.lowerBound)...Float(Self.answerRange.upperBound)
-    }
+    private static let sliderRange: ClosedRange<Float> = 0...1
 
     var color: Color
     @Binding var numSlider: Float
@@ -52,7 +48,7 @@ struct SliderView: View {
                     Text(String(numSlider))
                 }.padding()
 
-                Slider(value: $numSlider, in: sliderRange)
+                Slider(value: $numSlider, in: Self.sliderRange)
 
                 Spacer()
             }
