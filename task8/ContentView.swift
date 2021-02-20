@@ -16,15 +16,22 @@ struct ContentView: View {
 
         VStack {
             TabView(selection: $selection) {
-                comView(color: Color.red, tabTitle: "左タブ", isType: true, numSlider: $numSlider)
-                comView(color: Color.green, tabTitle: "右タブ", isType: false, numSlider: $numSlider)
+                SliderView(color: Color.red, numSlider: $numSlider)
+                    .tabItem {
+                        Text("左タブ")
+                    }
+                    .tag(0)
+                SliderView(color: Color.green, numSlider: $numSlider)
+                    .tabItem {
+                        Text("右タブ")
+                    }
+                    .tag(1)
             }
         }
     }
 }
 
-// 共通 View
-struct comView: View {
+struct SliderView: View {
 
     private static let answerRange = 0...1.0
 
@@ -33,9 +40,6 @@ struct comView: View {
     }
 
     var color: Color
-    var tabTitle: String
-    var isType: Bool
-
     @Binding var numSlider: Float
 
     var body: some View {
@@ -52,9 +56,7 @@ struct comView: View {
 
                 Spacer()
             }
-        }.tabItem {
-            Text(tabTitle)
-        }.tag(isType ? 0 : 1)
+        }
     }
 }
 
